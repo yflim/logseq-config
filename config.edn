@@ -1,0 +1,91 @@
+;; This global config file applies a configuration to all graphs. Any config
+;; keys from a graph's logseq/config.edn can used here. A graph's
+;; logseq/config.edn overrides config keys in this file except for maps which
+;; are merged. As an example of merging, the following global and local configs:
+;;   {:shortcuts {:ui/toggle-theme "t z"}}
+;;   {:shortcuts {:ui/toggle-brackets "t b"}}
+;;
+;;  would result in the final config:
+;;   {:shortcuts {:ui/toggle-theme "t z"
+;;                :ui/toggle-brackets "t b"}}
+
+{:preferred-format "Org"
+ :preferred-workflow :todo
+ :journal/page-title-format "EEEE, dd-MM-yyyy"
+ :journal/file-name-format "yyyyMMdd"
+ :default-home {:sidebar "Contents"}
+ :pages-directory "notes"
+ :org-mode/insert-file-link? true
+ :outliner/block-title-collapse-enabled? true
+ :ref/linked-references-collapsed-threshold 25
+ :property-pages/enabled? false
+ :property-pages/excludelist #{:url}
+ 
+ ;; :property-pages/excludelist #{:alias :tags}
+ 
+ ;; Prevents parsing the property's value for references ... obsolete because of
+ ;; "property value separated by commas will not be treated as page references"?
+ ;; What does this all mean?
+ ;; :ignored-page-references-keywords 
+ 
+ ;; By default, property value separated by commas will not be treated as
+ ;; page references. You can add properties to enable it.
+ ;; Example usage:
+ ;; :property/separated-by-commas #{:alias :tags}
+ 
+ ;; Configure custom shortcuts.
+ ;; Syntax:
+ ;; 1. + indicates simultaneous key presses, e.g., `Ctrl+Shift+a`.
+ ;; 2. A space between keys represents key chords, e.g., `t s` means
+ ;;    pressing `t` followed by `s`.
+ ;; 3. mod refers to `Ctrl` for Windows/Linux and `Command` for Mac.
+ ;; 4. Use false to disable a specific shortcut.
+ ;; 5. You can define multiple bindings for a single action, e.g., ["ctrl+j" "down"].
+ ;; The full list of configurable shortcuts is available at:
+ ;; https://github.com/logseq/logseq/blob/master/src/main/frontend/modules/shortcut/config.cljs
+ ;; Example:
+ ;; :shortcuts
+ ;; {:editor/new-block       "enter"
+ ;;  :editor/new-line        "shift+enter"
+ ;;  :editor/insert-link     "mod+shift+k"
+ ;;  :editor/highlight       false
+ ;;  :ui/toggle-settings     "t s"
+ ;;  :editor/up              ["ctrl+k" "up"]
+ ;;  :editor/down            ["ctrl+j" "down"]
+ ;;  :editor/left            ["ctrl+h" "left"]
+ ;;  :editor/right           ["ctrl+l" "right"]}
+ 
+  ;; Macros replace texts and will make you more productive.
+ ;; Example usage:
+ ;; Change the :macros value below to:
+ ;; {"poem" "Rose is $1, violet's $2. Life's ordered: Org assists you."}
+ ;; input "{{poem red,blue}}"
+ ;; becomes
+ ;; Rose is red, violet's blue. Life's ordered: Org assists you.
+ ;; :macros {}
+ 
+  ;; Set flashcards interval.
+ ;; Expected value:
+ ;; - Float between 0 and 1
+ ;; higher values result in faster changes to the next review interval.
+ ;; Default value: 0.5
+ ;; :srs/learning-fraction 0.5
+
+ ;; Set the initial interval after the first successful review of a card.
+ ;; Default value: 4
+ ;; :srs/initial-interval 4
+ 
+ ;; Configure the Enter key behavior for
+ ;; context-aware editing with DWIM (Do What I Mean).
+ ;; context-aware Enter key behavior implies that pressing Enter will
+ ;; have different outcomes based on the context.
+ ;; For instance, pressing Enter within a list generates a new list item,
+ ;; whereas pressing Enter in a block reference opens the referenced block.
+ ;; :dwim/settings
+ ;; {:admonition&src?  true        ;; Default value: true
+ ;;  :markup?          false       ;; Default value: false
+ ;;  :block-ref?       true        ;; Default value: true
+ ;;  :page-ref?        true        ;; Default value: true
+ ;;  :properties?      true        ;; Default value: true
+ ;;  :list?            false}      ;; Default value: false
+ }
